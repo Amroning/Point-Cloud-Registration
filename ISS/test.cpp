@@ -28,12 +28,12 @@ void extract_keypoint(pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud, pcl::PointClou
 	pcl::search::KdTree<pcl::PointXYZ>::Ptr tree(new pcl::search::KdTree<pcl::PointXYZ>());
 	iss.setInputCloud(cloud);
 	iss.setSearchMethod(tree);
-	iss.setNumberOfThreads(8);     //³õÊ¼»¯µ÷¶ÈÆ÷²¢ÉèÖÃÒªÊ¹ÓÃµÄÏß³ÌÊı
-	iss.setSalientRadius(5);  // ÉèÖÃÓÃÓÚ¼ÆËãĞ­·½²î¾ØÕóµÄÇòÁÚÓò°ë¾¶
-	iss.setNonMaxRadius(5);   // ÉèÖÃ·Ç¼«´óÖµÒÖÖÆÓ¦ÓÃËã·¨µÄ°ë¾¶
-	iss.setThreshold21(0.95);     // Éè¶¨µÚ¶ş¸öºÍµÚÒ»¸öÌØÕ÷ÖµÖ®±ÈµÄÉÏÏŞ
-	iss.setThreshold32(0.95);     // Éè¶¨µÚÈı¸öºÍµÚ¶ş¸öÌØÕ÷ÖµÖ®±ÈµÄÉÏÏŞ
-	iss.setMinNeighbors(6);       // ÔÚÓ¦ÓÃ·Ç¼«´óÖµÒÖÖÆËã·¨Ê±£¬ÉèÖÃ±ØĞëÕÒµ½µÄ×îĞ¡ÁÚ¾ÓÊı
+	iss.setNumberOfThreads(8);     //åˆå§‹åŒ–è°ƒåº¦å™¨å¹¶è®¾ç½®è¦ä½¿ç”¨çš„çº¿ç¨‹æ•°
+	iss.setSalientRadius(5);  // è®¾ç½®ç”¨äºè®¡ç®—åæ–¹å·®çŸ©é˜µçš„çƒé‚»åŸŸåŠå¾„
+	iss.setNonMaxRadius(5);   // è®¾ç½®éæå¤§å€¼æŠ‘åˆ¶åº”ç”¨ç®—æ³•çš„åŠå¾„
+	iss.setThreshold21(0.95);     // è®¾å®šç¬¬äºŒä¸ªå’Œç¬¬ä¸€ä¸ªç‰¹å¾å€¼ä¹‹æ¯”çš„ä¸Šé™
+	iss.setThreshold32(0.95);     // è®¾å®šç¬¬ä¸‰ä¸ªå’Œç¬¬äºŒä¸ªç‰¹å¾å€¼ä¹‹æ¯”çš„ä¸Šé™
+	iss.setMinNeighbors(6);       // åœ¨åº”ç”¨éæå¤§å€¼æŠ‘åˆ¶ç®—æ³•æ—¶ï¼Œè®¾ç½®å¿…é¡»æ‰¾åˆ°çš„æœ€å°é‚»å±…æ•°
 	iss.compute(*keypoint);
 }
 
@@ -80,9 +80,9 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr sac_align(pcl::PointCloud<pcl::PointXYZ>::Pt
 	scia.setInputTarget(t_k);
 	scia.setSourceFeatures(sk_fpfh);
 	scia.setTargetFeatures(tk_fpfh);
-	scia.setMinSampleDistance(7);///²ÎÊı£ºÉèÖÃ²ÉÑùµãÖ®¼äµÄ×îĞ¡¾àÀë£¬Âú×ãµÄ±»µ±×ö²ÉÑùµã
-	scia.setNumberOfSamples(100);////ÉèÖÃÃ¿´Îµü´úÉèÖÃ²ÉÑùµãµÄ¸öÊı(Õâ¸ö²ÎÊı¶à¿ÉÒÔÔö¼ÓÅä×¼¾«¶È)
-	scia.setCorrespondenceRandomness(6);//ÉèÖÃÑ¡ÔñËæ»úÌØÕ÷¶ÔÓ¦µãÊ±ÒªÊ¹ÓÃµÄÁÚÓòµã¸öÊı¡£ÖµÔ½´ó£¬ÌØÕ÷Æ¥ÅäµÄËæ»úĞÔ¾ÍÔ½´ó
+	scia.setMinSampleDistance(7);///å‚æ•°ï¼šè®¾ç½®é‡‡æ ·ç‚¹ä¹‹é—´çš„æœ€å°è·ç¦»ï¼Œæ»¡è¶³çš„è¢«å½“åšé‡‡æ ·ç‚¹
+	scia.setNumberOfSamples(100);////è®¾ç½®æ¯æ¬¡è¿­ä»£è®¾ç½®é‡‡æ ·ç‚¹çš„ä¸ªæ•°(è¿™ä¸ªå‚æ•°å¤šå¯ä»¥å¢åŠ é…å‡†ç²¾åº¦)
+	scia.setCorrespondenceRandomness(6);//è®¾ç½®é€‰æ‹©éšæœºç‰¹å¾å¯¹åº”ç‚¹æ—¶è¦ä½¿ç”¨çš„é‚»åŸŸç‚¹ä¸ªæ•°ã€‚å€¼è¶Šå¤§ï¼Œç‰¹å¾åŒ¹é…çš„éšæœºæ€§å°±è¶Šå¤§
 	pcl::PointCloud<pcl::PointXYZ>::Ptr sac_result(new pcl::PointCloud<pcl::PointXYZ>);
 	scia.align(*sac_result);
 	pcl::transformPointCloud(*cloud, *sac_result, scia.getFinalTransformation());
@@ -93,19 +93,19 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr sac_align(pcl::PointCloud<pcl::PointXYZ>::Pt
 
 int main(int argc, char** argv)
 {
-	//---------------------------¶ÁÈ¡µãÔÆ-----------------------------------
+	//---------------------------è¯»å–ç‚¹äº‘-----------------------------------
 	pcl::PointCloud<pcl::PointXYZ>::Ptr input(new pcl::PointCloud<pcl::PointXYZ>);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr target(new pcl::PointCloud<pcl::PointXYZ>);
 	if (pcl::io::loadPCDFile<pcl::PointXYZ>("pig_view1.pcd", *input) == -1)
 	{
-		PCL_ERROR("¼ÓÔØµãÔÆÊ§°Ü\n");
+		PCL_ERROR("åŠ è½½ç‚¹äº‘å¤±è´¥\n");
 	}
 	if (pcl::io::loadPCDFile<pcl::PointXYZ>("pig_view2.pcd", *target) == -1)
 	{
-		PCL_ERROR("¼ÓÔØµãÔÆÊ§°Ü\n");
+		PCL_ERROR("åŠ è½½ç‚¹äº‘å¤±è´¥\n");
 	}
 
-	//---------------------------ÌåËØÂË²¨-----------------------------------
+	//---------------------------ä½“ç´ æ»¤æ³¢-----------------------------------
 	//pcl::PointCloud<pcl::PointXYZ>::Ptr input_filt(new pcl::PointCloud<pcl::PointXYZ>());
 	//pcl::PointCloud<pcl::PointXYZ>::Ptr target_filt(new pcl::PointCloud<pcl::PointXYZ>());
 
@@ -115,45 +115,45 @@ int main(int argc, char** argv)
 	//cout << "points size of input_filt:" << input_filt->points.size() << endl;
 	//cout << "points size of target_filt:" << target_filt->points.size() << endl;
 
-	//---------------------------ÌØÕ÷µãÌáÈ¡-----------------------------------
+	//---------------------------ç‰¹å¾ç‚¹æå–-----------------------------------
 	pcl::ISSKeypoint3D<pcl::PointXYZ, pcl::PointXYZ> iss;
 	pcl::PointCloud<pcl::PointXYZ>::Ptr keypoints(new pcl::PointCloud<pcl::PointXYZ>());
 	pcl::search::KdTree<pcl::PointXYZ>::Ptr tree(new pcl::search::KdTree<pcl::PointXYZ>());
 	iss.setInputCloud(input);
 	iss.setSearchMethod(tree);
-	iss.setNumberOfThreads(8);     //³õÊ¼»¯µ÷¶ÈÆ÷²¢ÉèÖÃÒªÊ¹ÓÃµÄÏß³ÌÊı
-	iss.setSalientRadius(5);  // ÉèÖÃÓÃÓÚ¼ÆËãĞ­·½²î¾ØÕóµÄÇòÁÚÓò°ë¾¶
-	iss.setNonMaxRadius(5);   // ÉèÖÃ·Ç¼«´óÖµÒÖÖÆÓ¦ÓÃËã·¨µÄ°ë¾¶
-	iss.setThreshold21(0.95);     // Éè¶¨µÚ¶ş¸öºÍµÚÒ»¸öÌØÕ÷ÖµÖ®±ÈµÄÉÏÏŞ
-	iss.setThreshold32(0.95);     // Éè¶¨µÚÈı¸öºÍµÚ¶ş¸öÌØÕ÷ÖµÖ®±ÈµÄÉÏÏŞ
-	iss.setMinNeighbors(6);       // ÔÚÓ¦ÓÃ·Ç¼«´óÖµÒÖÖÆËã·¨Ê±£¬ÉèÖÃ±ØĞëÕÒµ½µÄ×îĞ¡ÁÚ¾ÓÊı
+	iss.setNumberOfThreads(8);     //åˆå§‹åŒ–è°ƒåº¦å™¨å¹¶è®¾ç½®è¦ä½¿ç”¨çš„çº¿ç¨‹æ•°
+	iss.setSalientRadius(5);  // è®¾ç½®ç”¨äºè®¡ç®—åæ–¹å·®çŸ©é˜µçš„çƒé‚»åŸŸåŠå¾„
+	iss.setNonMaxRadius(5);   // è®¾ç½®éæå¤§å€¼æŠ‘åˆ¶åº”ç”¨ç®—æ³•çš„åŠå¾„
+	iss.setThreshold21(0.95);     // è®¾å®šç¬¬äºŒä¸ªå’Œç¬¬ä¸€ä¸ªç‰¹å¾å€¼ä¹‹æ¯”çš„ä¸Šé™
+	iss.setThreshold32(0.95);     // è®¾å®šç¬¬ä¸‰ä¸ªå’Œç¬¬äºŒä¸ªç‰¹å¾å€¼ä¹‹æ¯”çš„ä¸Šé™
+	iss.setMinNeighbors(6);       // åœ¨åº”ç”¨éæå¤§å€¼æŠ‘åˆ¶ç®—æ³•æ—¶ï¼Œè®¾ç½®å¿…é¡»æ‰¾åˆ°çš„æœ€å°é‚»å±…æ•°
 	iss.compute(*keypoints);
-	cout << "ISS_3D points µÄÌáÈ¡½á¹ûÎª " << keypoints->points.size() << endl;
-	//ÌØÕ÷µãÏÔÊ¾
+	cout << "ISS_3D points çš„æå–ç»“æœä¸º " << keypoints->points.size() << endl;
+	//ç‰¹å¾ç‚¹æ˜¾ç¤º
 	boost::shared_ptr<pcl::visualization::PCLVisualizer> viewer1(new pcl::visualization::PCLVisualizer("3D ISS"));
 	viewer1->setBackgroundColor(255, 255, 255);
-	viewer1->setWindowName("ISS¹Ø¼üµãÌáÈ¡");
+	viewer1->setWindowName("ISSå…³é”®ç‚¹æå–");
 	pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ> single_color(input, 0.0, 255, 0.0);
 	viewer1->addPointCloud<pcl::PointXYZ>(input, single_color, "sample cloud");
-	viewer1->addPointCloud<pcl::PointXYZ>(keypoints, "key cloud");//ÌØÕ÷µã
+	viewer1->addPointCloud<pcl::PointXYZ>(keypoints, "key cloud");//ç‰¹å¾ç‚¹
 	viewer1->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 3, "key cloud");
 	viewer1->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_COLOR, 1.0, 0.0, 0.0, "key cloud");
 
-	//---------------------------´ÖÅä×¼-----------------------------------
+	//---------------------------ç²—é…å‡†-----------------------------------
 	pcl::PointCloud<pcl::PointXYZ>::Ptr s_k(new pcl::PointCloud<pcl::PointXYZ>);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr t_k(new pcl::PointCloud<pcl::PointXYZ>);
 	extract_keypoint(input, s_k);
 	extract_keypoint(target, t_k);
 
-	cout << "sourceÌáÈ¡ÌØÕ÷µãÊı£º" << s_k->points.size() << endl;
-	cout << "targetÌáÈ¡ÌØÕ÷µãÊı£º" << t_k->points.size() << endl;
+	cout << "sourceæå–ç‰¹å¾ç‚¹æ•°ï¼š" << s_k->points.size() << endl;
+	cout << "targetæå–ç‰¹å¾ç‚¹æ•°ï¼š" << t_k->points.size() << endl;
 
 	pcl::PointCloud<pcl::FPFHSignature33>::Ptr sk_fpfh = compute_fpfh_feature(input, s_k);
 	pcl::PointCloud<pcl::FPFHSignature33>::Ptr tk_fpfh = compute_fpfh_feature(target, t_k);
 	pcl::PointCloud<pcl::PointXYZ>::Ptr result(new pcl::PointCloud<pcl::PointXYZ>);
 	result = sac_align(input, s_k, t_k, sk_fpfh, tk_fpfh);
 
-	//¾«Åä×¼
+	//åŠ ä¸Š ICP ç²¾é…å‡†è¯•è¯•æ•ˆæœ
 	pcl::PointCloud<pcl::PointXYZ>::Ptr icp_result(new pcl::PointCloud<pcl::PointXYZ>);
 	pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
 	icp.setInputSource(result);
@@ -168,15 +168,15 @@ int main(int argc, char** argv)
 
 	cout << "icp matrix:\n" << icp.getFinalTransformation() << endl;
 
-	////---------------------------Åä×¼¿ÉÊÓ»¯-----------------------------------
-	boost::shared_ptr<pcl::visualization::PCLVisualizer>viewer(new pcl::visualization::PCLVisualizer("ÏÔÊ¾µãÔÆ"));
-	viewer->setBackgroundColor(255, 255, 255);  //ÉèÖÃ±³¾°ÑÕÉ«ÎªºÚÉ«
-	viewer->setWindowName("´ÖÅä×¼");
-	// ¶ÔÄ¿±êµãÔÆ×ÅÉ«¿ÉÊÓ»¯ (red).
+	////---------------------------é…å‡†å¯è§†åŒ–-----------------------------------
+	boost::shared_ptr<pcl::visualization::PCLVisualizer>viewer(new pcl::visualization::PCLVisualizer("æ˜¾ç¤ºç‚¹äº‘"));
+	viewer->setBackgroundColor(255, 255, 255);  //è®¾ç½®èƒŒæ™¯é¢œè‰²ä¸ºé»‘è‰²
+	viewer->setWindowName("ç²—é…å‡†");
+	// å¯¹ç›®æ ‡ç‚¹äº‘ç€è‰²å¯è§†åŒ– (red).
 	pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>target_color(target, 255, 0, 0);
 	viewer->addPointCloud<pcl::PointXYZ>(target, target_color, "target cloud");
 	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "target cloud");
-	// ¶ÔÔ´µãÔÆ×ÅÉ«¿ÉÊÓ»¯ (green).
+	// å¯¹æºç‚¹äº‘ç€è‰²å¯è§†åŒ– (green).
 	pcl::visualization::PointCloudColorHandlerCustom<pcl::PointXYZ>input_color(icp_result, 0, 255, 0);
 	viewer->addPointCloud<pcl::PointXYZ>(icp_result, input_color, "input cloud");
 	viewer->setPointCloudRenderingProperties(pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "input cloud");
